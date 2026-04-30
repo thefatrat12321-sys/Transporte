@@ -1,0 +1,597 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* ── NAVEGACIÓN ── */
+.ha-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
+}
+
+.ha-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ha-logo-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #C8960C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.ha-logo-text strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.ha-logo-text span {
+    font-size: 11px;
+    color: #C8960C;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.ha-nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.ha-nav-links a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+}
+
+.ha-nav-links a:hover {
+    color: #C8960C;
+}
+
+/* ── HERO ── */
+.ha-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.ha-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.pexels.com/photos/16756520/pexels-photo-16756520/free-photo-of-plaza-de-armas-de-cusco.jpeg') center / cover no-repeat;
+    transform: scale(1.05);
+    filter: brightness(0.45);
+}
+
+.ha-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.6) 0%, rgba(200, 150, 12, 0.1) 100%);
+}
+
+.ha-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 780px;
+    padding: 0 2rem;
+}
+
+.ha-badge {
+    display: inline-block;
+    background: #C8960C;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 18px;
+    border-radius: 20px;
+    margin-bottom: 1.2rem;
+}
+
+.ha-hero-title {
+    font-size: 3.6rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.ha-hero-title span {
+    color: #C8960C;
+}
+
+.ha-hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.ha-ruta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(200, 150, 12, 0.4);
+    border-radius: 30px;
+    padding: 10px 24px;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+.ha-ruta-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #C8960C;
+}
+
+.ha-ruta-line {
+    width: 40px;
+    height: 1px;
+    background: rgba(200, 150, 12, 0.6);
+}
+
+.ha-ruta-tiempo {
+    font-size: 11px;
+    opacity: 0.6;
+}
+
+.ha-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ha-btn-primary {
+    padding: 13px 32px;
+    background: #C8960C;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.ha-btn-primary:hover {
+    background: #a67a08;
+    transform: translateY(-1px);
+}
+
+.ha-btn-outline {
+    padding: 13px 32px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.ha-btn-outline:hover {
+    border-color: #C8960C;
+    background: rgba(200, 150, 12, 0.1);
+}
+
+.ha-scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.ha-scroll-arrow {
+    width: 1px;
+    height: 28px;
+    background: rgba(200, 150, 12, 0.6);
+    margin: 0 auto;
+    animation: scrollAnim 1.6s ease-in-out infinite;
+}
+
+@keyframes scrollAnim {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scaleY(0.6);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+/* ── ESTADÍSTICAS ── */
+.ha-stats {
+    background: #111;
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #1e1e1e;
+}
+
+.ha-stat {
+    text-align: center;
+    padding: 0 3rem;
+    position: relative;
+}
+
+.ha-stat+.ha-stat::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 36px;
+    background: #2a2a2a;
+}
+
+.ha-stat-num {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #C8960C;
+    line-height: 1;
+}
+
+.ha-stat-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
+/* ── DESTINOS ── */
+.ha-destinos {
+    background: #0d0d0d;
+    padding: 5rem 3rem;
+}
+
+.ha-destinos-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ha-destinos-header {
+    margin-bottom: 3rem;
+}
+
+.ha-section-tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: #C8960C;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+}
+
+.ha-section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.ha-section-sub {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.7;
+    max-width: 520px;
+}
+
+/* ── GRID DE TARJETAS ── */
+.ha-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.ha-card {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    aspect-ratio: 3 / 4;
+    background: #1a1a1a;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.35s;
+}
+
+.ha-card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    z-index: 10;
+}
+
+/* Efecto zoom en imagen al hacer hover */
+.ha-card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        filter 0.5s;
+    filter: brightness(0.7);
+}
+
+.ha-card:hover .ha-card-img {
+    transform: scale(1.08);
+    filter: brightness(0.85);
+}
+
+.ha-card-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 1.4rem 1.4rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, transparent 100%);
+    transition: padding 0.3s;
+}
+
+.ha-card:hover .ha-card-body {
+    padding-bottom: 1.8rem;
+}
+
+.ha-card-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #C8960C;
+    margin-bottom: 0.4rem;
+}
+
+.ha-card-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+}
+
+.ha-card-desc {
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.5;
+}
+
+.ha-card-arrow {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(200, 150, 12, 0);
+    border: 1px solid rgba(200, 150, 12, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 14px;
+    opacity: 0;
+    transition: background 0.3s, border-color 0.3s, opacity 0.3s;
+}
+
+.ha-card:hover .ha-card-arrow {
+    background: #C8960C;
+    border-color: #C8960C;
+    opacity: 1;
+}
+
+/* Tarjeta destacada (ocupa 2 columnas en pantallas grandes) */
+@media (min-width: 800px) {
+    .ha-card-featured {
+        grid-column: span 2;
+        aspect-ratio: 16 / 9;
+    }
+}
+
+/* ── SERVICIOS ── */
+.ha-servicios-wrapper {
+    background: #0d0d0d;
+    padding: 5rem 0;
+}
+
+.ha-servicios {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.ha-servicios-left {
+    flex: 1 1 280px;
+}
+
+.ha-servicios-right {
+    flex: 2 1 400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.ha-serv-card {
+    background: #181818;
+    border: 1px solid #222;
+    border-radius: 10px;
+    padding: 1.4rem;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.ha-serv-card:hover {
+    border-color: rgba(200, 150, 12, 0.5);
+    transform: translateY(-3px);
+}
+
+.ha-serv-icon {
+    font-size: 22px;
+    margin-bottom: 0.8rem;
+}
+
+.ha-serv-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.3rem;
+}
+
+.ha-serv-desc {
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.5;
+}
+
+/* ── CTA ── */
+.ha-cta {
+    background: #C8960C;
+    padding: 5rem 3rem;
+    text-align: center;
+}
+
+.ha-cta-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.8rem;
+}
+
+.ha-cta-sub {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 2rem;
+}
+
+.ha-cta-btn {
+    display: inline-block;
+    padding: 14px 40px;
+    background: #fff;
+    color: #C8960C;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.2s;
+}
+
+.ha-cta-btn:hover {
+    transform: scale(1.03);
+    opacity: 0.92;
+}
+
+/* ── FOOTER ── */
+.ha-footer {
+    background: #080808;
+    padding: 2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid #1a1a1a;
+}
+
+.ha-footer-copy {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.ha-footer-ruta {
+    font-size: 12px;
+    color: #C8960C;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+    .ha-nav-links {
+        display: none;
+    }
+
+    .ha-hero-title {
+        font-size: 2.2rem;
+    }
+
+    .ha-stats {
+        gap: 1rem;
+    }
+
+    .ha-stat {
+        padding: 0 1.5rem;
+    }
+
+    .ha-stat+.ha-stat::before {
+        display: none;
+    }
+
+    .ha-servicios-right {
+        grid-template-columns: 1fr;
+    }
+
+    .ha-footer {
+        flex-direction: column;
+        text-align: center;
+    }
+}

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horarios — Hermanos Ayar</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVEGACIÓN -->
+  <nav class="ha-nav" style="position:relative; background:#111; border-bottom:1px solid #1e1e1e;">
+    <div class="ha-logo">
+      <div class="ha-logo-icon">HA</div>
+      <div class="ha-logo-text">
+        <strong>Hermanos Ayar</strong>
+        <span>Transporte Seguro</span>
+      </div>
+    </div>
+    <div class="ha-nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="horarios.html" style="color:#C8960C;">Horarios</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="ha-hero" style="height:38vh; min-height:260px;">
+    <div class="ha-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1531065208531-4036c6bea3de?w=1600&q=80');"></div>
+    <div class="ha-hero-overlay"></div>
+    <div class="ha-hero-content">
+      <div class="ha-badge">Rutas Diarias</div>
+      <h1 class="ha-hero-title" style="font-size:2.4rem;">
+        Horarios de <span>Salida</span>
+      </h1>
+      <p class="ha-hero-sub" style="font-size:1rem;">
+        Cusco ↔ Paruro — Actualizado 2025
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTENIDO -->
+  <div class="ha-destinos">
+    <div class="ha-destinos-inner">
+
+      <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;color:#C8960C;
+         text-decoration:none;font-size:13.5px;font-weight:500;margin-bottom:2rem;
+         transition:gap 0.2s;" onmouseover="this.style.gap='14px'" onmouseout="this.style.gap='8px'">
+        ← Volver al inicio
+      </a>
+
+      <!-- FILTRO -->
+      <div style="display:flex;gap:1rem;margin-bottom:2.5rem;flex-wrap:wrap;">
+        <button class="ha-btn-primary" id="btn-cp" onclick="filtrar('cusco-paruro')">
+          Cusco → Paruro
+        </button>
+        <button class="ha-btn-outline" id="btn-pc" onclick="filtrar('paruro-cusco')">
+          Paruro → Cusco
+        </button>
+      </div>
+
+      <!-- TABLA CUSCO → PARURO -->
+      <div id="tabla-cusco-paruro" style="background:#111;border-radius:14px;
+           overflow:hidden;border:1px solid #1e1e1e;">
+        <table style="width:100%;border-collapse:collapse;">
+          <thead style="background:#C8960C;">
+            <tr>
+              <th style="padding:1rem 1.4rem;text-align:left;font-size:12px;font-weight:700;
+                         letter-spacing:1.5px;text-transform:uppercase;color:#fff;">Salida</th>
+              <th style="padding:1rem 1.4rem;text-align:left;font-size:12px;font-weight:700;
+                         letter-spacing:1.5px;text-transform:uppercase;color:#fff;">Origen</th>
+              <th style="padding:1rem 1.4rem;text-align:left;font-size:12px;font-weight:700;
+                         letter-spacing:1.5px;text-transform:uppercase;color:#fff;">Destino</th>
+              <th style="padding:1rem 1.4rem;text-align:left;font-size:12px;font-weight:700;
+                         letter-spacing:1.5px;text-transform:uppercase;color:#fff;">Duración</th>
+              <th style="padding:1rem 1.4rem;text-align:left;font-size:12px;font-weight:700;
+                         letter-spacing:1.5px;text-transform:uppercase;color:#fff;">Tipo</th>
+            </tr>
+          </thead>
+          <tbody id="body-cp"></tbody>
+        </table>
+      </div>
+
+      <!-- TABLA PARURO → CUSCO -->
+      <div id="tabla-paruro-cusco" style="display:none;background:#111;border-radius:14px;
+           overflow:hidden;border:1px solid #1e1e1e;">
+        <table style="width:100%;border-collapse:collapse;">
+          <thead style="background:#C8960C;">
+            <tr>
+              <th style="padding:1rem 1.4rem;text-align:left;font-size:12px;font-weight:700;
+                         letter-spacing:1.5px;text-transform:uppercase;color:#fff;">Salida</th>
+              <th style="padding:1rem 1.4rem;text-align:left;font-size:12px;font-weight:700;
+                         letter-spacing:1.5px;text-transform:uppercase;color:#fff;">Origen</th>
+              <th style="padding:1rem 1.4rem;text-align:left;font-size:12px;font-weight:700;
+                         letter-spacing:1.5px;text-transform:uppercase;color:#fff;">Destino</th>
+              <th style="padding:1rem 1.4rem;text-align:left;font-size:12px;font-weight:700;
+                         letter-spacing:1.5px;text-transform:uppercase;color:#fff;">Duración</th>
+              <th style="padding:1rem 1.4rem;text-align:left;font-size:12px;font-weight:700;
+                         letter-spacing:1.5px;text-transform:uppercase;color:#fff;">Tipo</th>
+            </tr>
+          </thead>
+          <tbody id="body-pc"></tbody>
+        </table>
+      </div>
+
+      <!-- INFO CARDS -->
+      <div class="ha-grid" style="margin-top:2.5rem;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));">
+        <div class="ha-serv-card">
+          <div class="ha-serv-icon">📍</div>
+          <div class="ha-serv-title">Terminal Cusco</div>
+          <div class="ha-serv-desc">Terminal Terrestre Santiago, Cusco</div>
+        </div>
+        <div class="ha-serv-card">
+          <div class="ha-serv-icon">📍</div>
+          <div class="ha-serv-title">Terminal Paruro</div>
+          <div class="ha-serv-desc">Plaza Principal de Paruro</div>
+        </div>
+        <div class="ha-serv-card">
+          <div class="ha-serv-icon">💵</div>
+          <div class="ha-serv-title">Tarifa</div>
+          <div class="ha-serv-desc">Consultar en boletería</div>
+        </div>
+        <div class="ha-serv-card">
+          <div class="ha-serv-icon">📞</div>
+          <div class="ha-serv-title">Reservas</div>
+          <div class="ha-serv-desc">984 123 456</div>
+        </div>
+      </div>
+
+      <!-- AVISO -->
+      <div style="margin-top:2rem;padding:1rem 1.4rem;
+           background:rgba(200,150,12,0.08);border-left:3px solid #C8960C;
+           border-radius:0 8px 8px 0;font-size:13px;color:rgba(255,255,255,0.6);">
+        ⚠️ Los horarios pueden variar en feriados y días de feria. Te recomendamos confirmar tu salida con anticipación.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="ha-footer">
+    <div class="ha-footer-copy">© 2025 Transportes Hermanos Ayar. Todos los derechos reservados.</div>
+    <div class="ha-footer-ruta">Cusco ↔ Paruro — Siempre contigo</div>
+  </footer>
+
+  <script>
+    var horariosCP = [
+      { hora:'05:00 am', origen:'Cusco', destino:'Paruro', duracion:'~3 horas',  tipo:'Directo' },
+      { hora:'07:00 am', origen:'Cusco', destino:'Paruro', duracion:'~3 horas',  tipo:'Directo' },
+      { hora:'09:00 am', origen:'Cusco', destino:'Paruro', duracion:'~3.5 horas',tipo:'Con paradas' },
+      { hora:'11:00 am', origen:'Cusco', destino:'Paruro', duracion:'~3 horas',  tipo:'Directo' },
+      { hora:'01:00 pm', origen:'Cusco', destino:'Paruro', duracion:'~3.5 horas',tipo:'Con paradas' },
+      { hora:'03:00 pm', origen:'Cusco', destino:'Paruro', duracion:'~3 horas',  tipo:'Directo' },
+      { hora:'05:00 pm', origen:'Cusco', destino:'Paruro', duracion:'~3 horas',  tipo:'Directo' },
+      { hora:'07:00 pm', origen:'Cusco', destino:'Paruro', duracion:'~3 horas',  tipo:'Directo' }
+    ];
+
+    var horarioPC = [
+      { hora:'04:00 am', origen:'Paruro', destino:'Cusco', duracion:'~3 horas',  tipo:'Directo' },
+      { hora:'06:00 am', origen:'Paruro', destino:'Cusco', duracion:'~3 horas',  tipo:'Directo' },
+      { hora:'08:00 am', origen:'Paruro', destino:'Cusco', duracion:'~3.5 horas',tipo:'Con paradas' },
+      { hora:'10:00 am', origen:'Paruro', destino:'Cusco', duracion:'~3 horas',  tipo:'Directo' },
+      { hora:'12:00 pm', origen:'Paruro', destino:'Cusco', duracion:'~3.5 horas',tipo:'Con paradas' },
+      { hora:'02:00 pm', origen:'Paruro', destino:'Cusco', duracion:'~3 horas',  tipo:'Directo' },
+      { hora:'04:00 pm', origen:'Paruro', destino:'Cusco', duracion:'~3 horas',  tipo:'Directo' },
+      { hora:'06:00 pm', origen:'Paruro', destino:'Cusco', duracion:'~3 horas',  tipo:'Directo' }
+    ];
+
+    // Calcular próxima salida según hora actual
+    function getMinutos(horaStr) {
+      var m = horaStr.match(/(\d+):(\d+)\s*(am|pm)/i);
+      if (!m) return -1;
+      var h = parseInt(m[1]), min = parseInt(m[2]), p = m[3].toLowerCase();
+      if (p === 'pm' && h !== 12) h += 12;
+      if (p === 'am' && h === 12) h = 0;
+      return h * 60 + min;
+    }
+
+    function proximaFila(lista) {
+      var ahora = new Date();
+      var actual = ahora.getHours() * 60 + ahora.getMinutes();
+      var idx = -1, menor = Infinity;
+      lista.forEach(function(item, i) {
+        var diff = getMinutos(item.hora) - actual;
+        if (diff >= 0 && diff < menor) { menor = diff; idx = i; }
+      });
+      return idx;
+    }
+
+    function renderTabla(bodyId, lista) {
+      var proxima = proximaFila(lista);
+      var html = '';
+      lista.forEach(function(item, i) {
+        var esProxima = i === proxima;
+        var bg = esProxima ? 'background:rgba(200,150,12,0.15);border-left:3px solid #C8960C;' : '';
+        var badgeStyle = item.tipo === 'Directo'
+          ? 'background:rgba(200,150,12,0.2);color:#C8960C;'
+          : 'background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);';
+        var proximaTag = esProxima
+          ? '<span style="font-size:10px;color:#C8960C;font-weight:700;margin-left:6px;">← Próxima</span>'
+          : '';
+        html += '<tr style="border-bottom:1px solid #1a1a1a;' + bg + '">'
+          + '<td style="padding:1rem 1.4rem;font-size:15px;font-weight:600;color:#fff;">'
+          + item.hora + proximaTag + '</td>'
+          + '<td style="padding:1rem 1.4rem;font-size:14px;color:rgba(255,255,255,0.8);">' + item.origen + '</td>'
+          + '<td style="padding:1rem 1.4rem;font-size:14px;color:rgba(255,255,255,0.8);">' + item.destino + '</td>'
+          + '<td style="padding:1rem 1.4rem;font-size:14px;color:rgba(255,255,255,0.8);">' + item.duracion + '</td>'
+          + '<td style="padding:1rem 1.4rem;"><span style="display:inline-block;padding:3px 10px;'
+          + 'border-radius:10px;font-size:11px;font-weight:600;' + badgeStyle + '">'
+          + item.tipo + '</span></td>'
+          + '</tr>';
+      });
+      document.getElementById(bodyId).innerHTML = html;
+    }
+
+    function filtrar(ruta) {
+      document.getElementById('tabla-cusco-paruro').style.display = 'none';
+      document.getElementById('tabla-paruro-cusco').style.display = 'none';
+      document.getElementById('tabla-' + ruta).style.display = 'block';
+
+      // Intercambiar estilos de botones
+      if (ruta === 'cusco-paruro') {
+        document.getElementById('btn-cp').className = 'ha-btn-primary';
+        document.getElementById('btn-pc').className = 'ha-btn-outline';
+      } else {
+        document.getElementById('btn-pc').className = 'ha-btn-primary';
+        document.getElementById('btn-cp').className = 'ha-btn-outline';
+      }
+    }
+
+    // Renderizar al cargar
+    renderTabla('body-cp', horariosCP);
+    renderTabla('body-pc', horarioPC);
+  </script>
+
+</body>
+</html>
